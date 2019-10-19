@@ -7,6 +7,7 @@ package br.edu.femass.controleestagio.dao;
 
 import br.edu.femass.controleestagio.model.Aluno;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,24 +16,31 @@ import javax.persistence.Query;
  *
  * @author Rodrigo
  */
+@Stateless
 public class AlunoDao {
+
     @PersistenceContext
     EntityManager em;
-    
-    public void Inserir(Aluno aluno){
+
+    public void inserir(Aluno aluno) {
         em.persist(aluno);
     }
-    
-    public void Alterar(Aluno aluno){
+
+    public void alterar(Aluno aluno) {
         em.merge(aluno);
     }
-    
-    public void Excluir(Aluno aluno){
+
+    public void excluir(Aluno aluno) {
         em.remove(em.merge(aluno));
-    }    
-    
-    public List<Aluno> getClientes(String nome) {
-        Query q = em.createQuery("select c from Aluno a where a.nome = :n");
+    }
+
+    public List<Aluno> getAlunos() {
+        Query q = em.createQuery("select a from Aluno a order by a.matricula");
+        return q.getResultList();
+    }
+
+    public List<Aluno> getAlunos(String nome) {
+        Query q = em.createQuery("select a from Aluno a where a.nome = :n");
         q.setParameter("n", nome);
         return q.getResultList();
     }

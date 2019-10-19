@@ -20,5 +20,5 @@ public class Empresa {
     private Integer numero;
     private String compplemento;
     private String cEP;
-
+    private Boolean convenio;
 }
