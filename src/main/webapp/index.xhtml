@@ -8,7 +8,12 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:commandLink value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
+            <p:column >
+                <p:commandButton value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
+                <p:commandButton value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
+                <p:commandButton value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
+                <p:commandButton value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
+            </p:column>
         </h:form>
     </h:body>
 </html>

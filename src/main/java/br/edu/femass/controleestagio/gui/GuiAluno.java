@@ -23,7 +23,7 @@ public class GuiAluno implements Serializable {
 
     private List<Aluno> alunos;
     private Aluno aluno;
-    private Boolean alterado;
+    private Boolean alterando;
 
     @EJB
     AlunoDao alunoDao;
@@ -38,13 +38,13 @@ public class GuiAluno implements Serializable {
 
     public String incluir() {
         aluno = new Aluno();
-        alterado = false;
+        alterando = false;
         return "FrmCadAluno";
     }
 
     public String alterar(Aluno a) {
         aluno = a;
-        alterado = true;
+        alterando = true;
         return "FrmCadAluno";
     }
 
@@ -55,10 +55,10 @@ public class GuiAluno implements Serializable {
     }
 
     public String gravar() {
-        if (alterado) {
-            alunoDao.alterar(getAluno());
+        if (alterando) {
+            alunoDao.alterar(aluno);
         } else {
-            alunoDao.inserir(getAluno());
+            alunoDao.inserir(aluno);
         }
         return iniciar();
     }

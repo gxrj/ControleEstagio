@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,25 +21,23 @@ public class Aluno implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idAluno;
     private String matricula;
     private String nome;
-
-   // @OneToMany
     private Curso cursa;
-    
+
     /**
-     * @return the id
+     * @return the idAluno
      */
-    public Long getId() {
-        return id;
+    public Long getIdAluno() {
+        return idAluno;
     }
 
     /**
-     * @param id the id to set
+     * @param idAluno the idAluno to set
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdAluno(Long idAluno) {
+        this.idAluno = idAluno;
     }
 
     /**
@@ -88,18 +85,18 @@ public class Aluno implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (idAluno != null ? idAluno.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the idAluno fields are not set
         if (!(object instanceof Aluno)) {
             return false;
         }
         Aluno other = (Aluno) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.idAluno == null && other.idAluno != null) || (this.idAluno != null && !this.idAluno.equals(other.idAluno))) {
             return false;
         }
         return true;

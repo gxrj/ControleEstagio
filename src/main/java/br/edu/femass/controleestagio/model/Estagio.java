@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Estagio {
 
     private Aluno alunoEstagio;
-    private ProfessorOrientador orientadorEstagio;
+    private Orientador orientadorEstagio;
     private LocalDate dataInicioEstagio;
     private LocalDate datafimEstagio;
     private Status statusDoEstagio;
