@@ -24,7 +24,7 @@ public class Aluno implements Serializable {
     private Long idAluno;
     private String matricula;
     private String nome;
-    private Curso cursa;
+    private String cursoNome;
 
     /**
      * @return the idAluno
@@ -41,17 +41,17 @@ public class Aluno implements Serializable {
     }
 
     /**
-     * @return the cursa
+     * @return the curso
      */
-    public Curso getCursa() {
-        return cursa;
+    public String getCursoNome() {
+        return cursoNome;
     }
 
     /**
-     * @param cursa the cursa to set
+     * @param cursoNome the curso to set
      */
-    public void setCursa(Curso cursa) {
-        this.cursa = cursa;
+    public void setCursoNome(String cursoNome) {
+        this.cursoNome = cursoNome;
     }
 
     /**

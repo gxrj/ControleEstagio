@@ -54,6 +54,13 @@ public class GuiEmpresa implements Serializable {
         empresas = empresaDao.getEmpresas();
         return null;
     }
+    
+    public String voltarMenuPrincipal(){
+        return "index";
+    }
+    public String voltar(){
+        return "FrmLstEmpresa";
+    }
 
     public String gravar() {
         if (alterando) {

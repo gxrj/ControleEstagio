@@ -54,6 +54,14 @@ public class GuiCurso implements Serializable {
         cursos = cursoDao.getCursos();
         return null;
     }
+    
+    public String voltarMenuPrincipal(){
+        return "index";
+    }
+    
+    public String voltar(){
+        return "FrmLstCurso";
+    }
 
     public String gravar() {
         if (alterando) {
