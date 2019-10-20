@@ -40,7 +40,7 @@ public class EmpresaDao{
     }
 
     public List<Empresa> getEmpresas(String nome) {
-        Query q = em.createQuery("select e from Empresa c where e.nomeEmpresa = :n");
+        Query q = em.createQuery("select e from Empresa e where e.nomeEmpresa = :n");
         q.setParameter("n", nome);
         return q.getResultList();
     }
