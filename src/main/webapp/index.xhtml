@@ -8,17 +8,26 @@
     </h:head>
     <h:body>
         <style>
+            body{
+                
+                background-color: white;
+            }
             #item{
                 width: 20%;
                 padding:8px;
                 align-content: center;
+                color: white;
+            }
+            h:form{  
+                background-color: #3333ff;
             }
         </style>
         <h:form>
             <p:tabMenu>
                 <p:menuitem class="item" value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
-                <p:menuitem class="item" value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Estagio" action="#{guiEstagio.iniciar()}" ajax="false" />
                 <p:menuitem class="item" value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
                 <p:menuitem class="item" value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
             </p:tabMenu>
         </h:form>
