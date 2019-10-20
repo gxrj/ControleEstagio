@@ -6,8 +6,11 @@
 package br.edu.femass.controleestagio.gui;
 
 import br.edu.femass.controleestagio.dao.AlunoDao;
+import br.edu.femass.controleestagio.dao.CursoDao;
 import br.edu.femass.controleestagio.model.Aluno;
+import br.edu.femass.controleestagio.model.Curso;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -21,33 +24,71 @@ import javax.inject.Named;
 @SessionScoped
 public class GuiAluno implements Serializable {
 
+
+
     private List<Aluno> alunos;
     private Aluno aluno;
+    private List <String> listaDeCursos;
+    private List <Curso> cursos;
+    private String cursoNome;
     private Boolean alterando;
 
     @EJB
     AlunoDao alunoDao;
+    @EJB
+    CursoDao daoCurso = new CursoDao();
 
     public GuiAluno() {
     }
 
     public String iniciar() {
         alunos = alunoDao.getAlunos();
+        listaDeCursos = new ArrayList<String>();
         return "FrmLstAluno";
     }
 
     public String incluir() {
         aluno = new Aluno();
         alterando = false;
+        
+        //Retorna a lista de itens para a selecao do combobox do FrmCadAluno
+        try{
+            cursos = daoCurso.getCursos();
+            //Opcao 1
+            //for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());
+            
+            //Opcao 2
+            listaDeCursos = daoCurso.getListaDeNomesDosCursos();
+        }catch(Exception e){listaDeCursos = null;}
+        
         return "FrmCadAluno";
     }
 
     public String alterar(Aluno a) {
         aluno = a;
         alterando = true;
+        
+        //Retorna a lista de itens para a selecao do combobox do FrmCadAluno
+        try{
+            cursos = daoCurso.getCursos();
+            
+            //Opcao 1
+            //for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());
+            
+            //Opcao 2
+            listaDeCursos = daoCurso.getListaDeNomesDosCursos();
+        }catch(Exception e){listaDeCursos = null;}
+        
         return "FrmCadAluno";
     }
-
+    
+    public String voltarMenuPrincipal(){
+        return "index";
+    }
+    
+    public String voltar(){
+        return "FrmLstAluno";
+    }
     public String excluir(Aluno a) {
         alunoDao.excluir(a);
         alunos = alunoDao.getAlunos();
@@ -90,5 +131,30 @@ public class GuiAluno implements Serializable {
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
+    
+    public List<String> getListaDeCursos() {
+        return listaDeCursos;
+    }
 
+    public void setListaDeCursos(List<String> listaDeCursos) {
+        this.listaDeCursos = listaDeCursos;
+    }
+
+    public String getCursoNome() {
+        return cursoNome;
+    }
+
+    public void setCursoNome(String cursoNome) {
+        this.cursoNome = cursoNome;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+    
+    
 }

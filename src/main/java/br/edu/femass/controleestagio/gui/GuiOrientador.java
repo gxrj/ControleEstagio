@@ -53,7 +53,13 @@ public class GuiOrientador implements Serializable{
         orientadores = orientadorDao.getOrientadores();
         return null;
     }
-
+    
+    public String voltarMenuPrincipal(){
+        return "index";
+    }
+    public String voltar(){
+        return "FrmLstOrientador";
+    }
     public String gravar() {
         if (alterando) {
             orientadorDao.alterar(orientador);

@@ -6,7 +6,6 @@
 package br.edu.femass.controleestagio.dao;
 
 import br.edu.femass.controleestagio.model.Empresa;
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,7 +17,7 @@ import javax.persistence.Query;
  * @author dumas
  */
 @Stateless
-public class EmpresaDao implements Serializable {
+public class EmpresaDao{
 
     @PersistenceContext
     EntityManager em;

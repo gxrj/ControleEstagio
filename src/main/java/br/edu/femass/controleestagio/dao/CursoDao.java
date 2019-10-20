@@ -39,9 +39,14 @@ public class CursoDao {
         return q.getResultList();
     }
 
-    public List<Curso> getClientes(String nome) {
+    public List<Curso> getCursos(String nome) {
         Query q = em.createQuery("select c from Curso c where c.nomeCurso = :n");
         q.setParameter("n", nome);
         return q.getResultList();
+    }
+    
+    public List<String> getListaDeNomesDosCursos(){
+       Query q = em.createQuery("select c.nomeCurso from Curso c order by c.nomeCurso");
+       return q.getResultList(); 
     }
 }
