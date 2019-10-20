@@ -7,13 +7,20 @@
         <title>Controle Estagio</title>
     </h:head>
     <h:body>
+        <style>
+            #item{
+                width: 20%;
+                padding:8px;
+                align-content: center;
+            }
+        </style>
         <h:form>
-            <p:column >
-                <p:commandButton value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
-                <p:commandButton value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
-                <p:commandButton value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
-                <p:commandButton value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
-            </p:column>
+            <p:tabMenu>
+                <p:menuitem class="item" value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
+            </p:tabMenu>
         </h:form>
     </h:body>
 </html>
