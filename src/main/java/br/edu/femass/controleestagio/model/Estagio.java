@@ -78,7 +78,7 @@ public class Estagio implements Serializable{
     public void setDatafimEstagio(LocalDate datafimEstagio) {
         this.datafimEstagio = datafimEstagio;
     }
-
+    
     public Status getStatusDoEstagio() {
         return statusDoEstagio;
     }

@@ -13,14 +13,20 @@
                 <p:outputLabel value="idEstagio" />
                 <p:inputText value="#{guiEstagio.estagio.id}" />
                 <p:outputLabel value="Aluno" />
-                <p:inputText value="#{guiEstagio.estagio.alunoEstagio}" />
+                <p:selectOneMenu value="#{guiEstagio.estagio.alunoEstagio}" dynamic="true" style="width:200px">
+                    <f:selectItem itemLabel="Selecione o Aluno" itemValue="" />
+                    <f:selectItems value="#{guiEstagio.alunos}" />  
+                </p:selectOneMenu>
                 <p:selectOneRadio>
                     <f:selectItem itemLabel="Obrigatorio" itemValue="true" />
-                    <f:selectItem itemLabel="Não Obrigatorio" itemValue="false" />
+                    <f:selectItem itemLabel="Não Obrigatorio" itemValue="false" />                
                 </p:selectOneRadio>
                 <br />
                 <p:outputLabel value="Orientdor" />
-                <p:inputText value="#{guiEstagio.estagio.orientadorEstagio}" />
+                <p:selectOneMenu value="#{guiEstagio.estagio.orientadorEstagio}" dynamic="true" style="width:200px">
+                    <f:selectItem itemLabel="Selecione o Orientador" itemValue="" />
+                    <f:selectItems value="#{guiEstagio.orientadores}" />  
+                </p:selectOneMenu>
                 <p:outputLabel value="Data Inicio" />
                 <p:inputText value="#{guiEstagio.estagio.dataInicioEstagio}" />
                 <p:outputLabel value="Data Termino" />

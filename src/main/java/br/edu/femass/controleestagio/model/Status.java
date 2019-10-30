@@ -11,6 +11,5 @@ package br.edu.femass.controleestagio.model;
  */
 public enum Status {
 
-    Cursando, Aprovador, Reprovado;
-
+    Cursando, Aprovado, Reprovado;
 }
