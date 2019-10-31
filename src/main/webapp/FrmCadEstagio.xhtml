@@ -10,7 +10,7 @@
     <h:body>
         <h:form>
             <h:panelGrid columns="2">
-                <p:outputLabel value="idEstagio" />
+                <p:outputLabel value="Estágio" />
                 <p:inputText value="#{guiEstagio.estagio.id}" />
                 <p:outputLabel value="Aluno" />
                 <p:selectOneMenu value="#{guiEstagio.estagio.alunoEstagio}" dynamic="true" style="width:200px">
@@ -22,15 +22,15 @@
                     <f:selectItem itemLabel="Não Obrigatorio" itemValue="false" />                
                 </p:selectOneRadio>
                 <br />
-                <p:outputLabel value="Orientdor" />
+                <p:outputLabel value="Orientador" />
                 <p:selectOneMenu value="#{guiEstagio.estagio.orientadorEstagio}" dynamic="true" style="width:200px">
                     <f:selectItem itemLabel="Selecione o Orientador" itemValue="" />
                     <f:selectItems value="#{guiEstagio.orientadores}" />  
                 </p:selectOneMenu>
                 <p:outputLabel value="Data Inicio" />
-                <p:inputText value="#{guiEstagio.estagio.dataInicioEstagio}" />
+                <p:calendar value="#{guiEstagio.estagio.dataInicioEstagio}" />
                 <p:outputLabel value="Data Termino" />
-                <p:inputText value="#{guiEstagio.estagio.datafimEstagio}" />
+                <p:calendar value="#{guiEstagio.estagio.datafimEstagio}" />
                 <p:outputLabel value="Situcao" />
                 <p:inputText value="#{guiEstagio.estagio.statusDoEstagio}" />
             </h:panelGrid>
