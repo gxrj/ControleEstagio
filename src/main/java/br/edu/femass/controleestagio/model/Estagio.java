@@ -6,7 +6,7 @@
 package br.edu.femass.controleestagio.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,8 +27,8 @@ public class Estagio implements Serializable{
     private boolean categoriaObrigatoria;
     private Aluno alunoEstagio;
     private Orientador orientadorEstagio;
-    private LocalDate dataInicioEstagio;
-    private LocalDate datafimEstagio;
+    private Date dataInicioEstagio;
+    private Date datafimEstagio;
     private Status statusDoEstagio;
 
     public String getId() {
@@ -63,19 +63,19 @@ public class Estagio implements Serializable{
         this.orientadorEstagio = orientadorEstagio;
     }
 
-    public LocalDate getDataInicioEstagio() {
+    public Date getDataInicioEstagio() {
         return dataInicioEstagio;
     }
 
-    public void setDataInicioEstagio(LocalDate dataInicioEstagio) {
+    public void setDataInicioEstagio(Date dataInicioEstagio) {
         this.dataInicioEstagio = dataInicioEstagio;
     }
 
-    public LocalDate getDatafimEstagio() {
+    public Date getDatafimEstagio() {
         return datafimEstagio;
     }
 
-    public void setDatafimEstagio(LocalDate datafimEstagio) {
+    public void setDatafimEstagio(Date datafimEstagio) {
         this.datafimEstagio = datafimEstagio;
     }
     
