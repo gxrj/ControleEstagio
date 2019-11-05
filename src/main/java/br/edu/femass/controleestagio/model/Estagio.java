@@ -27,6 +27,7 @@ public class Estagio implements Serializable{
     private boolean categoriaObrigatoria;
     private Aluno alunoEstagio;
     private Orientador orientadorEstagio;
+    private Empresa empresaEstagio;
     private Date dataInicioEstagio;
     private Date datafimEstagio;
     private Status statusDoEstagio;
@@ -63,6 +64,14 @@ public class Estagio implements Serializable{
         this.orientadorEstagio = orientadorEstagio;
     }
 
+    public Empresa getEmpresaEstagio() {
+        return empresaEstagio;
+    }
+
+    public void setEmpresaEstagio(Empresa empresaEstagio) {
+        this.empresaEstagio = empresaEstagio;
+    }    
+    
     public Date getDataInicioEstagio() {
         return dataInicioEstagio;
     }
@@ -110,6 +119,6 @@ public class Estagio implements Serializable{
     public String toString() {
         return id;
     }
-    
+
     
 }

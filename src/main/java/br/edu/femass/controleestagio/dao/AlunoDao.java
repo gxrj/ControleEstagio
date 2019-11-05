@@ -35,11 +35,11 @@ public class AlunoDao {
     }
 
     public List<Aluno> getAlunos() {
-        Query q = em.createQuery("select a from Aluno a order by a.matricula");
+        Query q = em.createQuery("select a from Aluno a order by a.nome");
         return q.getResultList();
     }
     public List<String> getListaAlunos() {
-        Query q = em.createQuery("select a.nome from Aluno o order by a.nome");
+        Query q = em.createQuery("select a.nome from Aluno a order by a.nome");
        return q.getResultList(); 
     }
 

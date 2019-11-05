@@ -17,7 +17,7 @@ import javax.persistence.Query;
  * @author dumas
  */
 @Stateless
-public class EmpresaDao{
+public class EmpresaDao {
 
     @PersistenceContext
     EntityManager em;
@@ -42,6 +42,11 @@ public class EmpresaDao{
     public List<Empresa> getEmpresas(String nome) {
         Query q = em.createQuery("select e from Empresa e where e.nomeEmpresa = :n");
         q.setParameter("n", nome);
+        return q.getResultList();
+    }
+
+    public List<String> getListaEmpresas() {
+        Query q = em.createQuery("select e from Empresa e order by e.nomeEmpresa");
         return q.getResultList();
     }
 

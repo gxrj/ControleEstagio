@@ -191,4 +191,9 @@ public class Empresa implements Serializable {
     public Long getIdEmpresa() {
         return idEmpresa;
     }
+    
+    @Override
+    public String toString(){
+        return nomeEmpresa;
+    }
 }

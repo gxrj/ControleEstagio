@@ -1,9 +1,11 @@
 package br.edu.femass.controleestagio.gui;
 
 import br.edu.femass.controleestagio.dao.AlunoDao;
+import br.edu.femass.controleestagio.dao.EmpresaDao;
 import br.edu.femass.controleestagio.dao.EstagioDao;
 import br.edu.femass.controleestagio.dao.OrientadorDao;
 import br.edu.femass.controleestagio.model.Aluno;
+import br.edu.femass.controleestagio.model.Empresa;
 import br.edu.femass.controleestagio.model.Estagio;
 import br.edu.femass.controleestagio.model.Orientador;
 import br.edu.femass.controleestagio.model.Status;
@@ -11,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -21,83 +24,100 @@ import javax.enterprise.context.SessionScoped;
  */
 @Named(value = "guiEstagio")
 @SessionScoped
-public class GuiEstagio implements Serializable{
+public class GuiEstagio implements Serializable {
 
-    @EJB
-    private AlunoDao alunoDao;
-
-    private List<Estagio> estagios; 
+    private List<Estagio> estagios;
     private Estagio estagio;
     private Boolean alterando;
     private List<Orientador> orientadores;
-    private List <String> listaDeOrientadores;
-    private List <String> listaDeAlunos;
-    private Orientador orientador;
     private List<Aluno> alunos;
+    private List<Empresa> empresas;
+    private List<String> listaDeOrientadores;
+    private List<String> listaDeAlunos;
+    private List<String> listaDeEmpresas;
+    private Orientador orientador;
     private Aluno aluno;
-    
+    private Empresa empresa;
+
+    @EJB
+    AlunoDao alunoDao = new AlunoDao();
     @EJB
     OrientadorDao orientadorDao = new OrientadorDao();
     @EJB
     EstagioDao daoEstagio = new EstagioDao();
-    
+    @EJB
+    EmpresaDao empresaDao = new EmpresaDao();
+
     public GuiEstagio() {
     }
-    
-    public String iniciar(){
-            estagios = daoEstagio.getEstagios();
-            listaDeOrientadores = new ArrayList<>();
-            listaDeAlunos = new ArrayList<>();            
-            return "FrmLstEstagio";
-    }
-    
-    public String incluir(){
-            estagio = new Estagio();
-            alterando = false;
-            //Retorna a lista de itens para a selecao do combobox do FrmCadEstagio
-            try{
-                orientadores = orientadorDao.getOrientadores();
-                listaDeOrientadores = orientadorDao.getListaOrientadores();
-            }catch(Exception e){listaDeOrientadores = null ;}
-            try{
-                alunos = alunoDao.getAlunos();
-                listaDeAlunos = alunoDao.getListaAlunos();
-            }catch(Exception e){listaDeAlunos = null ;}
-        
-            
-            return "FrmCadEstagio";
-    }
-    
-    public String alterar(Estagio e){
-           estagio = e;
-           alterando = true;
-           return "FrmCadEstagio";
-    }
-    
-    public String mostraStatus (){
-        Status[] s = Status.values();
-        return Arrays.toString(s);
-    } 
-    public String excluir(Estagio e){
-           daoEstagio.excluir(e);
-           estagios = daoEstagio.getEstagios();
-           return null;
-    }
-    public String voltarMenuPrincipal(){
-        return "index";
-    }
-    public String voltar(){
+
+    public String iniciar() {
+        estagios = daoEstagio.getEstagios();
+        listaDeOrientadores = new ArrayList<>();
+        listaDeAlunos = new ArrayList<>();
+        listaDeEmpresas = new ArrayList<>();
         return "FrmLstEstagio";
     }
-    
-    public String gravar(){
-        
-        if(alterando){
+
+    public String incluir() {
+        estagio = new Estagio();
+        alterando = false;
+        //Retorna a lista de itens para a selecao do combobox do FrmCadEstagio
+        try {
+            orientadores = orientadorDao.getOrientadores();
+            listaDeOrientadores = orientadorDao.getListaOrientadores();
+        } catch (Exception e) {
+            listaDeOrientadores = null;
+        }
+        try {
+            alunos = alunoDao.getAlunos();
+            listaDeAlunos = alunoDao.getListaAlunos();
+        } catch (Exception e) {
+            listaDeAlunos = null;
+        }
+        try {
+            empresas = empresaDao.getEmpresas();
+            listaDeEmpresas = empresaDao.getListaEmpresas();
+        } catch (Exception e) {
+            listaDeEmpresas = null;
+        }
+
+        return "FrmCadEstagio";
+    }
+
+    public String alterar(Estagio e) {
+        estagio = e;
+        alterando = true;
+        return "FrmCadEstagio";
+    }
+
+    public String mostraStatus() {
+        Status[] s = Status.values();
+        return Arrays.toString(s);
+    }
+
+    public String excluir(Estagio e) {
+        daoEstagio.excluir(e);
+        estagios = daoEstagio.getEstagios();
+        return null;
+    }
+
+    public String voltarMenuPrincipal() {
+        return "index";
+    }
+
+    public String voltar() {
+        return "FrmLstEstagio";
+    }
+
+    public String gravar() {
+
+        if (alterando) {
             daoEstagio.alterar(estagio);
-        }else{
+        } else {
             daoEstagio.inserir(estagio);
         }
-        
+
         return iniciar();
     }
 
@@ -164,7 +184,33 @@ public class GuiEstagio implements Serializable{
     public void setAluno(Aluno aluno) {
         this.aluno = aluno;
     }
-    
-    
-    
+
+    /**
+     * @return the empresas
+     */
+    public List<Empresa> getEmpresas() {
+        return empresas;
+    }
+
+    /**
+     * @param empresas the empresas to set
+     */
+    public void setEmpresas(List<Empresa> empresas) {
+        this.empresas = empresas;
+    }
+
+    /**
+     * @return the empresa
+     */
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    /**
+     * @param empresa the empresa to set
+     */
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
 }

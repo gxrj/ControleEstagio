@@ -9,9 +9,27 @@
     <h:body>
         <h:form>
             <p:commandButton value="Incluir" action="#{guiEstagio.incluir()}" ajax="false" />
-            <p:dataTable var="cur" value="#{guiEstagio.estagios}">
-                <p:column headerText="Nome do Estagiario">
+            <p:dataTable var="est" value="#{guiEstagio.estagios}">
+                <p:column headerText="Aluno">
                     <h:outputText value="#{est.alunoEstagio}" />
+                </p:column>
+                <p:column headerText="Orientador">
+                    <h:outputText value="#{est.orientadorEstagio}" />
+                </p:column>
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{est.empresaEstagio}" />
+                </p:column>
+                <p:column headerText="Data inicio">
+                    <h:outputText value="#{est.dataInicioEstagio}" />
+                </p:column>
+                <p:column headerText="Data fim">
+                    <h:outputText value="#{est.datafimEstagio}" />
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{est.categoriaObrigatoria}" />
+                </p:column>
+                <p:column headerText="Situação">
+                    <h:outputText value="#{est.statusDoEstagio}" />
                 </p:column>
                 <p:column >
                     <p:commandButton value="Alterar" action="#{guiEstagio.alterar(est)}" ajax="false" />
@@ -20,7 +38,7 @@
             </p:dataTable>
             <p:commandButton value="Menu Principal" action="#{guiEstagio.voltarMenuPrincipal()}" ajax="false" />
         </h:form>
-        
+
     </h:body>
 </html>
 
