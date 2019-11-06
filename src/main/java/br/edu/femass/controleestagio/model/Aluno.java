@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,8 +25,9 @@ public class Aluno implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAluno;
     private String matricula;
-    private String nome;
-    private String cursoNome;
+    private String nome;      
+    @ManyToOne
+    protected Curso curso;
 
     /**
      * @return the idAluno
@@ -43,15 +46,15 @@ public class Aluno implements Serializable {
     /**
      * @return the curso
      */
-    public String getCursoNome() {
-        return cursoNome;
+    public Curso getCurso() {
+        return curso;
     }
 
     /**
-     * @param cursoNome the curso to set
+     * @param curso the curso to set
      */
-    public void setCursoNome(String cursoNome) {
-        this.cursoNome = cursoNome;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     /**
