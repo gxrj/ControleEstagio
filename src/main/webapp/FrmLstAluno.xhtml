@@ -10,11 +10,43 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Cadastro de Aluno</title>
+        <link type="text/css" rel="stylesheet"
+              href="jquery-ui.theme.css"></link>
     </h:head>
     <h:body>
+        
+        <div style="font-size:34px; font-family:monospace ;margin-top: 4%; margin-bottom:2%; text-align: center;">CONTROLE DE ESTÁGIO</div>    
+        
+        <style>
+            body{
+                
+                background-color: white;
+            }
+            #item{
+                width: 20%;
+                padding:3px;
+                align-content: center;
+                color: white;
+            } 
+            h:form{  
+                background-color: #3333ff;
+                
+            }
+        </style>
         <h:form>
-            <p:commandButton value="Incluir" action="#{guiAluno.incluir()}" ajax="false" />
-            <p:dataTable var="alu" value="#{guiAluno.alunos}">
+            <p:tabMenu style="justify-content: center; align-items: center; display: flex">
+                <p:menuitem style="text-align: center;" class="item" value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Estágio" action="#{guiEstagio.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
+            </p:tabMenu>
+        </h:form>
+        
+        
+        <h:form>
+            
+            <p:dataTable style="margin-top:5%; justify-content: center; align-items: center; display: flex;" var="alu" value="#{guiAluno.alunos}">
                 <p:column headerText="Nome">
                     <h:outputText value="#{alu.nome}" />
                 </p:column>
@@ -29,7 +61,13 @@ and open the template in the editor.
                     <p:commandButton value="Excluir" action="#{guiAluno.excluir(alu)}" ajax="false" />
                 </p:column>
             </p:dataTable>
+            
+            <div style="margin-top:3%; justify-content: center; align-items: center; display: flex;">
             <p:commandButton value="Menu Principal" action="#{guiAluno.voltarMenuPrincipal()}" ajax="false" />
+            <p:commandButton value="Incluir" action="#{guiAluno.incluir()}" ajax="false" />
+            </div>
+            
         </h:form>
+           
     </h:body>
 </html>

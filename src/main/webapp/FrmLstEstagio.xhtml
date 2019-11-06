@@ -5,11 +5,42 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Cadastro de Estagio</title>
+        <link type="text/css" rel="stylesheet"
+              href="jquery-ui.theme.css"></link>
     </h:head>
     <h:body>
+        
+        <div style="font-size:34px; font-family:monospace ;margin-top: 4%; margin-bottom:2%; text-align: center;">CONTROLE DE ESTÁGIO</div>    
+        
+        <style>
+            body{
+                
+                background-color: white;
+            }
+            #item{
+                width: 20%;
+                padding:3px;
+                align-content: center;
+                color: white;
+            } 
+            h:form{  
+                background-color: #3333ff;
+                
+            }
+        </style>
         <h:form>
-            <p:commandButton value="Incluir" action="#{guiEstagio.incluir()}" ajax="false" />
-            <p:dataTable var="est" value="#{guiEstagio.estagios}">
+            <p:tabMenu style="justify-content: center; align-items: center; display: flex">
+                <p:menuitem style="text-align: center;" class="item" value="Aluno" action="#{guiAluno.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Estágio" action="#{guiEstagio.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Empresa" action="#{guiEmpresa.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Curso" action="#{guiCurso.iniciar()}" ajax="false" />
+                <p:menuitem class="item" value="Orientador" action="#{guiOrientador.iniciar()}" ajax="false" />
+            </p:tabMenu>
+        </h:form>
+        
+        <h:form>
+            
+            <p:dataTable style="margin-top:5%; justify-content: center; align-items: center; display: flex;" var="est" value="#{guiEstagio.estagios}">
                 <p:column headerText="Aluno">
                     <h:outputText value="#{est.alunoEstagio}" />
                 </p:column>
@@ -36,7 +67,12 @@
                     <p:commandButton value="Excluir" action="#{guiEstagio.excluir(est)}" ajax="false" />
                 </p:column>
             </p:dataTable>
+            
+            <div style="margin-top:3%; justify-content: center; align-items: center; display: flex;">
             <p:commandButton value="Menu Principal" action="#{guiEstagio.voltarMenuPrincipal()}" ajax="false" />
+            <p:commandButton value="Incluir" action="#{guiEstagio.incluir()}" ajax="false" />
+            </div>
+            
         </h:form>
 
     </h:body>
