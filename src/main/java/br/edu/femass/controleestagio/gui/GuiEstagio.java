@@ -38,6 +38,7 @@ public class GuiEstagio implements Serializable {
     private Orientador orientador;
     private Aluno aluno;
     private Empresa empresa;
+    private String campoNomeOrientador, campoNomeAluno, campoNomeEmpresa;
 
     @EJB
     AlunoDao alunoDao = new AlunoDao();
@@ -56,6 +57,7 @@ public class GuiEstagio implements Serializable {
         listaDeOrientadores = new ArrayList<>();
         listaDeAlunos = new ArrayList<>();
         listaDeEmpresas = new ArrayList<>();
+       
         return "FrmLstEstagio";
     }
 
@@ -85,8 +87,8 @@ public class GuiEstagio implements Serializable {
         return "FrmCadEstagio";
     }
 
-    public String alterar(Estagio e) {
-        estagio = e;
+    public String alterar() {
+       
         alterando = true;
         return "FrmCadEstagio";
     }
@@ -102,16 +104,12 @@ public class GuiEstagio implements Serializable {
         return null;
     }
 
-    public String voltarMenuPrincipal() {
-        return "index";
-    }
-
-    public String voltar() {
-        return "FrmLstEstagio";
-    }
-
     public String gravar() {
 
+        estagio.setAlunoEstagio(alunoDao.getAlunoByString(campoNomeAluno));
+        estagio.setEmpresaEstagio(empresaDao.getEmpresaByString(campoNomeEmpresa));
+        estagio.setOrientadorEstagio(orientadorDao.getOrientadorByString(campoNomeOrientador));
+        
         if (alterando) {
             daoEstagio.alterar(estagio);
         } else {
@@ -121,6 +119,36 @@ public class GuiEstagio implements Serializable {
         return iniciar();
     }
 
+    public String getCampoNomeOrientador() {
+        return campoNomeOrientador;
+    }
+
+    public void setCampoNomeOrientador(String campoNomeOrientador) {
+        this.campoNomeOrientador = campoNomeOrientador;
+    }
+
+    public String getCampoNomeAluno() {
+        return campoNomeAluno;
+    }
+
+    public void setCampoNomeAluno(String campoNomeAluno) {
+        this.campoNomeAluno = campoNomeAluno;
+    }
+
+    public String getCampoNomeEmpresa() {
+        return campoNomeEmpresa;
+    }
+
+    public void setCampoNomeEmpresa(String campoNomeEmpresa) {
+        this.campoNomeEmpresa = campoNomeEmpresa;
+    }
+    public String voltarMenuPrincipal() {
+        return "index";
+    }
+
+    public String voltar() {
+        return "FrmLstEstagio";
+    }
     public List<Estagio> getEstagios() {
         return estagios;
     }

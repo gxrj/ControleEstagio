@@ -11,17 +11,17 @@
         <h:form>
             <h:panelGrid columns="2">
                 <p:outputLabel value="Aluno" />
-                <p:selectOneMenu value="#{guiEstagio.estagio.alunoEstagio}" dynamic="true" style="width:210px">
+                <p:selectOneMenu value="#{guiEstagio.campoNomeAluno}" dynamic="true" style="width:210px">
                     <f:selectItem itemLabel="Selecione o Aluno" itemValue="" />
                     <f:selectItems value="#{guiEstagio.alunos}" />  
                 </p:selectOneMenu>
                 <p:outputLabel value="Orientador" />
-                <p:selectOneMenu value="#{guiEstagio.estagio.orientadorEstagio}" dynamic="true" style="width:210px">
+                <p:selectOneMenu value="#{guiEstagio.campoNomeOrientador}" dynamic="true" style="width:210px">
                     <f:selectItem itemLabel="Selecione o Orientador" itemValue="" />
                     <f:selectItems value="#{guiEstagio.orientadores}" />  
                 </p:selectOneMenu>
                 <p:outputLabel value="Empresa" />
-                <p:selectOneMenu value="#{guiEstagio.estagio.empresaEstagio}" dynamic="true" style="width:210px">
+                <p:selectOneMenu value="#{guiEstagio.campoNomeEmpresa}" dynamic="true" style="width:210px">
                     <f:selectItem itemLabel="Selecione a Empresa" itemValue="" />
                     <f:selectItems value="#{guiEstagio.empresas}" />  
                 </p:selectOneMenu>

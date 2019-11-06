@@ -48,4 +48,17 @@ public class AlunoDao {
         q.setParameter("n", nome);
         return q.getResultList();
     }
+    
+    public Aluno getAlunoByString(String nome) {
+        Query q = em.createQuery("select a from Aluno a where a.nome = :n");
+        q.setParameter("n", nome);
+        return (Aluno) q.getSingleResult();
+    }
+    
+    public Aluno getAlunoByMatricula(String matricula)
+    {
+        Query q = em.createQuery("select a from  Aluno a where a.matricula = :m");
+        q.setParameter("m", matricula);
+        return (Aluno) q.getSingleResult();
+    }
 }

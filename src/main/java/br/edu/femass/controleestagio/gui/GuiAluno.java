@@ -30,7 +30,7 @@ public class GuiAluno implements Serializable {
     private Aluno aluno;
     private List <String> listaDeCursos;
     private List <Curso> cursos;
-    private String cursoNome;
+    private String campoCursoNome;
     private Boolean alterando;
 
     @EJB
@@ -43,7 +43,7 @@ public class GuiAluno implements Serializable {
 
     public String iniciar() {
         alunos = alunoDao.getAlunos();
-        listaDeCursos = new ArrayList<String>();
+        listaDeCursos = new ArrayList<>();
         return "FrmLstAluno";
     }
 
@@ -54,29 +54,20 @@ public class GuiAluno implements Serializable {
         //Retorna a lista de itens para a selecao do combobox do FrmCadAluno
         try{
             cursos = daoCurso.getCursos();
-            //Opcao 1
-            //for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());
-            
-            //Opcao 2
-            listaDeCursos = daoCurso.getListaDeNomesDosCursos();
+            for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());            
         }catch(Exception e){listaDeCursos = null;}
         
         return "FrmCadAluno";
     }
 
-    public String alterar(Aluno a) {
-        aluno = a;
+    public String alterar() {
+        
         alterando = true;
         
         //Retorna a lista de itens para a selecao do combobox do FrmCadAluno
         try{
             cursos = daoCurso.getCursos();
-            
-            //Opcao 1
-            //for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());
-            
-            //Opcao 2
-            listaDeCursos = daoCurso.getListaDeNomesDosCursos();
+            for(Curso c : cursos) listaDeCursos.add(c.getNomeCurso());           
         }catch(Exception e){listaDeCursos = null;}
         
         return "FrmCadAluno";
@@ -96,6 +87,9 @@ public class GuiAluno implements Serializable {
     }
 
     public String gravar() {
+
+        aluno.setCurso(daoCurso.getCursoByString(this.getCampoCursoNome()));
+               
         if (alterando) {
             alunoDao.alterar(aluno);
         } else {
@@ -140,12 +134,12 @@ public class GuiAluno implements Serializable {
         this.listaDeCursos = listaDeCursos;
     }
 
-    public String getCursoNome() {
-        return cursoNome;
+    public String getCampoCursoNome() {
+        return campoCursoNome;
     }
 
-    public void setCursoNome(String cursoNome) {
-        this.cursoNome = cursoNome;
+    public void setCampoCursoNome(String campoCursoNome) {
+        this.campoCursoNome = campoCursoNome;
     }
 
     public List<Curso> getCursos() {
