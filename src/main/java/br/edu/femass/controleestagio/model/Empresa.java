@@ -179,10 +179,9 @@ public class Empresa implements Serializable {
             return false;
         }
         Empresa other = (Empresa) object;
-        if ((this.getIdEmpresa() == null && other.getIdEmpresa() != null) || (this.getIdEmpresa() != null && !this.idEmpresa.equals(other.idEmpresa))) {
-            return false;
-        }
-        return true;
+        
+        return this.getNomeEmpresa().equals(other.getNomeEmpresa());
+
     }
 
     /**
